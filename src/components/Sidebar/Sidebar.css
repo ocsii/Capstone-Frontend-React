@@ -3,7 +3,7 @@
     display: inline-flex;
     flex-direction: column;
     justify-content: space-between;
-
+    color: white;
     background-color: var(--sunway-blue);
     padding: 25px 15px;
 }

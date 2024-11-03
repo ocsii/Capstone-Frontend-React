@@ -1,0 +1,136 @@
+.main {
+    flex: 1;
+    min-height: 100vh;
+    padding-bottom: 15vh;
+    position: relative;
+    background-color: var(--sunway-white);
+    color: black;
+
+}
+
+.main .nav img {
+    width: 40px;
+}
+
+.main .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 22px;
+    padding: 20px;
+    color: var(--sunway-blue);
+    font-weight: 700;
+}
+
+.main-container {
+    max-width: 900px;
+    margin: auto;
+}
+
+.main .greet {
+    margin: 50px 0px;
+    font-size: 56px;
+    color: var(--sunway-dark-blue);
+    font-weight: 700;
+    padding: 20px;
+    opacity: 0.8;
+}
+
+.main .greet span {
+    background: -webkit-linear-gradient(10deg, var(--sunway-orange), var(--sunway-dark-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.main .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.main .card {
+    height: 200px;
+    padding: 15px;
+    background-color: var(--sunway-blue); /* Change this to orange maybe */
+    border-radius: 12px; 
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.25;
+}
+
+.main .card p {
+    color: white;
+    font-size: 18px;
+}
+
+.main .card:hover {
+    background-color: var(--sunway-orange);
+    transform: scale(1.01); 
+
+
+}
+
+.main .card img {
+    width: 35px;
+    padding: 5px;
+    position: absolute;
+    background-color: white;
+    border-radius: 15px;
+    bottom: 10px;
+    right: 10px;
+}
+
+.main-bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-width: 900px;
+    padding: 0px 20px;
+    margin: auto;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #d3daed; /* ccd5e0 - blueish gray light*/
+    padding: 10px 20px; 
+    border-radius: 15px;
+}
+
+.search-box img {
+    width: 24px;
+    cursor: pointer;
+}
+
+.search-box input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 18px;
+}
+
+.search-box input::placeholder {
+    color: #aaa;
+    font-style: italic;
+    opacity: 0.6; 
+}
+
+.main .bottom-info {
+    font-size: 12px;
+    margin: 15px auto 7px;
+    text-align: center;
+    font-weight: 300;
+}
+
+.main .bottom-info-name {
+    position: absolute;
+    font-size: 9px;
+    right: 3px;
+    bottom: 3px;
+}
+
+
