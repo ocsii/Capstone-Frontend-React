@@ -79,8 +79,6 @@ const Main = () => {
                 </p>
               </div>
               <div className="result-data">
-                {/* <img src={assets.icon_prerequisite} alt="" /> */}
-
                 {loading ? (
                   <div className="loader">
                     <hr />
@@ -118,6 +116,18 @@ const Main = () => {
           <p className="bottom-info">
             This is a personal project not an official product of Sunway. Please
             double check any critical information.
+          </p>
+          <p className="bottom-info">
+            Backend is on a free-tier which causes very slow loading times. For
+            faster responses run it{" "}
+            <a
+              href="https://github.com/ocsii/Capstone-Backend-Fine-Tuning"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              locally
+            </a>
+            .
           </p>
         </div>
       </div>

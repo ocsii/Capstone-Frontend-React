@@ -160,7 +160,18 @@
     background-color: var(--sunway-blue);
     color: white;
     font-weight: 1000;
+
+    position: relative;
 }
+
+
+/* .disclaimer {
+    position: absolute;
+    top: 100px;
+    font-size: 12px; 
+    text-align: center;
+    
+} */
 
 .result img {
     width: 40px;
