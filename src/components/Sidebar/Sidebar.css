@@ -74,9 +74,11 @@
 
 .sidebar .bottom-item {
     margin-top: 10px;
-    padding-right: 10px;
     font-weight: 800;
 }
+
+.sidebar .bottom-item img {
+margin: 5px;}
 
 
 @media (max-width: 600px) {
