@@ -3,7 +3,7 @@ import { createContext, useState } from "react";
 export const Context = createContext();
 
 const ContextProvider = (props) => {
-  const API_URL = "https://capstone-backend-api-x64d.onrender.com/query";
+  const API_URL = "http://127.0.0.1:8000/query";
 
   const [input, setInput] = useState("");
   const [recentPrompt, setRecentPrompt] = useState("");
