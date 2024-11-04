@@ -47,7 +47,15 @@ const Sidebar = () => {
       </div>
 
       <div className="bottom">
-        <div className="bottom-item recent-entry">
+        <div
+          className="bottom-item recent-entry"
+          onClick={() =>
+            window.open(
+              "https://github.com/ocsii/Capstone-Backend-Fine-Tuning",
+              "_blank"
+            )
+          }
+        >
           <img src={assets.icon_information} alt="" />
           {extended ? <p> Project Info </p> : null}
         </div>
