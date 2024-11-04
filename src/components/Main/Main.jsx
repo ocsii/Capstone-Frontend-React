@@ -12,6 +12,7 @@ const Main = () => {
     resultData,
     setInput,
     input,
+    newChat,
   } = useContext(Context);
 
   // Array of question objects with associated icons
@@ -38,7 +39,10 @@ const Main = () => {
   return (
     <div className="main">
       <div className="nav">
-        <p> SunwayGPT </p>
+        <p onClick={() => newChat()} className="titleHeader">
+          {" "}
+          SunwayGPT{" "}
+        </p>
 
         <img className="sunwayLogo" src={assets.icon_sunway_logo} alt="" />
       </div>
@@ -100,11 +104,14 @@ const Main = () => {
               placeholder="Enter your question..."
             />
             <div>
-              <img
-                onClick={() => onSent()}
-                src={assets.icon_running_black}
-                alt=""
-              />
+              {input ? (
+                <img
+                  class="sendButton"
+                  onClick={() => onSent()}
+                  src={assets.icon_running_black}
+                  alt=""
+                />
+              ) : null}
             </div>
           </div>
 

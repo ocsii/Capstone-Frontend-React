@@ -11,6 +11,7 @@ import icon_question_mark from './question-mark_orange.png'
 import icon_prerequisite from './rotate-right.png'
 import icon_running_black from './running_black.png'
 import icon_information from "./info.png"
+import icon_right_arrow from "./right-arrow_orange.png"
 
 export const assets = {
   icon_plus_orange,
@@ -26,4 +27,5 @@ export const assets = {
   icon_prerequisite,
   icon_running_black,
   icon_information,
+  icon_right_arrow,
 }

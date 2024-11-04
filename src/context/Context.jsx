@@ -18,22 +18,19 @@ const ContextProvider = (props) => {
     }, 75 * index);
   };
 
-  const onSent = async () => {
-    setResultData("");
-    setLoading(true);
-    setShowResult(true);
-    setRecentPrompt(input); // Save the current input as recent prompt
+  const newChat = () => {
+    setLoading(false);
+    setShowResult(false);
+  };
 
-    // Update previous prompts with the current input
-    setPreviousPrompts((prev) => [...prev, input]);
-
+  const fetchResponse = async (prompt) => {
     try {
       const res = await fetch(API_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ question: input }),
+        body: JSON.stringify({ question: prompt }),
       });
 
       if (!res.ok) {
@@ -42,23 +39,41 @@ const ContextProvider = (props) => {
 
       const response = await res.json();
       let responseString = response["Answer: "];
-      // Process the response to format it properly
-      let newResponse = processResponse(responseString);
-
-      // Display each word with a delay for typing effect
-      let newResponseArray = newResponse.split(" ");
-      newResponseArray.forEach((nextWord, i) => {
-        delayPara(i, nextWord + " ");
-      });
+      return processResponse(responseString);
     } catch (error) {
       console.error(error);
-      setResultData(
-        "No response from backend | Error parsing response from backend"
-      );
-    } finally {
-      setLoading(false);
-      setInput(""); // Clear input after sending
+      return "No response from backend | Error parsing response from backend";
     }
+  };
+
+  const onSent = async (prompt) => {
+    setResultData(""); // Clear previous results
+
+    // Set recent prompt immediately
+    if (prompt) {
+      setRecentPrompt(prompt);
+    } else {
+      setRecentPrompt(input);
+      setPreviousPrompts((prev) => [...prev, input]); // Store the input
+    }
+
+    setLoading(true); // Start loading
+    setShowResult(true); // Show result area
+
+    let response;
+    // Fetch response based on the prompt
+    response = await fetchResponse(prompt || input);
+
+    // After fetching, process the response
+    if (response) {
+      let newResponseArray = response.split(" ");
+      newResponseArray.forEach((nextWord, i) => {
+        delayPara(i, nextWord + " "); // Display with delay
+      });
+    }
+
+    setLoading(false); // Stop loading after processing
+    setInput(""); // Clear input after sending
   };
 
   const processResponse = (responseString) => {
@@ -92,6 +107,7 @@ const ContextProvider = (props) => {
     resultData,
     input,
     setInput,
+    newChat,
   };
 
   return (

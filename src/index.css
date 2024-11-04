@@ -14,4 +14,22 @@
   --sunway-orange: #f06800;
   --sunway-white: #f7f7f7;
 
+  animation: slideFadeIn 1.5s
 }
+
+
+
+@keyframes slideFadeIn {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+

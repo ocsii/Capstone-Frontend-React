@@ -59,6 +59,10 @@
     transition: transform 0.25;
 }
 
+.titleHeader {
+    cursor: pointer;
+}
+
 .main .card p {
     color: white;
     font-size: 18px;
@@ -186,6 +190,32 @@
     animation: loader 3s infinite linear
 }
 
+.result-data p {
+    font-size: 17px;
+    font-weight: 300px;
+    line-height: 1.8;
+}
+
+.sendButton {
+    opacity: 0; /* Initially hidden */
+    transform: translateX(50px); /* Start from right */
+    animation: fadeIn 0.5s forwards; /* Fade in */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+
+
 @keyframes loader {
     0% {
         background-position: -800px 0px;
@@ -195,8 +225,27 @@
     }
 }
 
-.result-data p {
-    font-size: 17px;
-    font-weight: 300px;
-    line-height: 1.8;
+@media (max-width: 600px) {
+    .main-bottom input {
+        flex: none;
+        width: 150px;
+    }
+
+    .main-bottom img {
+        width: 20px;
+    }
+
+    .search-box {
+        padding: 5px 10px;
+    }
+
+    .search-box input::placeholder {
+        font-size: 15px;
+    }
+
+    .card {
+        display: none;
+    }
+    
 }
+
