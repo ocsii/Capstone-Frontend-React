@@ -66,9 +66,7 @@
 
 .main .card:hover {
     background-color: var(--sunway-orange);
-    transform: scale(1.01); 
-
-
+    transform: scale(1.02); 
 }
 
 .main .card img {
@@ -140,6 +138,11 @@
     overflow-y: scroll;
 }
 
+.result .result-title img {
+    width: 26px;
+    margin: 10px;
+}
+
 .result::-webkit-scrollbar{
     display: none;
 
@@ -150,6 +153,9 @@
     display: flex;
     align-items: center;
     gap: 20px;
+    background-color: var(--sunway-blue);
+    color: white;
+    font-weight: 1000;
 }
 
 .result img {
@@ -193,5 +199,4 @@
     font-size: 17px;
     font-weight: 300px;
     line-height: 1.8;
-
 }

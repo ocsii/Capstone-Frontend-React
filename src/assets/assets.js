@@ -10,6 +10,7 @@ import icon_clock from './clock_orange.png'
 import icon_question_mark from './question-mark_orange.png'
 import icon_prerequisite from './rotate-right.png'
 import icon_running_black from './running_black.png'
+import icon_information from "./info.png"
 
 export const assets = {
   icon_plus_orange,
@@ -24,4 +25,5 @@ export const assets = {
   icon_question_mark,
   icon_prerequisite,
   icon_running_black,
+  icon_information,
 }

@@ -14,6 +14,27 @@ const Main = () => {
     input,
   } = useContext(Context);
 
+  // Array of question objects with associated icons
+  const questions = [
+    { text: "What is Mr Muthukumarans email?", icon: assets.icon_email_orange },
+    {
+      text: "What is the prerequisites for Object Oriented Programming?",
+      icon: assets.icon_prerequisite,
+    },
+    {
+      text: "What is the criteria to achieve first class honors?",
+      icon: assets.icon_question_mark,
+    },
+    {
+      text: "What is the credit hours for Data Structures and Algorithms?",
+      icon: assets.icon_clock,
+    },
+  ];
+
+  const handleCardClick = (question) => {
+    setInput(question);
+  };
+
   return (
     <div className="main">
       <div className="nav">
@@ -32,42 +53,29 @@ const Main = () => {
               <p>Ask me a question!</p>
             </div>
             <div className="cards">
-              <div className="card">
-                <p>What is Mr Muthukumarans email?</p>
-                <img src={assets.icon_email_orange} alt="" />
-              </div>
-
-              <div className="card">
-                <p>
-                  What is the prerequisites for Object Oriented Programming?
-                </p>
-                <img src={assets.icon_prerequisite} alt="" />
-              </div>
-
-              <div className="card">
-                <p>What is the criteria to achieve first class honors?</p>
-                <img src={assets.icon_question_mark} alt="" />
-              </div>
-
-              <div className="card">
-                <p>
-                  What is the credit hours for Data Structures and Algorithms?
-                </p>
-                <img src={assets.icon_clock} alt="" />
-              </div>
+              {questions.map((question, index) => (
+                <div
+                  key={index}
+                  className="card"
+                  onClick={() => handleCardClick(question.text)}
+                >
+                  <p>{question.text}</p>
+                  <img src={question.icon} alt="" />
+                </div>
+              ))}
             </div>
           </>
         ) : (
           <>
             <div className="result">
               <div className="result-title">
-                <img src={assets.icon_sunway_logo} alt="" />
+                <img src={assets.icon_question_mark} alt="" />
                 <p>
                   {recentPrompt.charAt(0).toUpperCase() + recentPrompt.slice(1)}
                 </p>
               </div>
               <div className="result-data">
-                <img src={assets.icon_prerequisite} alt="" />
+                {/* <img src={assets.icon_prerequisite} alt="" /> */}
 
                 {loading ? (
                   <div className="loader">
@@ -112,7 +120,3 @@ const Main = () => {
 };
 
 export default Main;
-
-/* <p>
-        
-      </p>*/

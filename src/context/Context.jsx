@@ -7,22 +7,25 @@ const ContextProvider = (props) => {
 
   const [input, setInput] = useState("");
   const [recentPrompt, setRecentPrompt] = useState("");
-  const [previousPrompt, setPreviousPrompts] = useState([]);
+  const [previousPrompts, setPreviousPrompts] = useState([]);
   const [showResult, setShowResult] = useState(false);
   const [loading, setLoading] = useState(false);
   const [resultData, setResultData] = useState("");
 
   const delayPara = (index, nextWord) => {
-    setTimeout(function () {
+    setTimeout(() => {
       setResultData((prev) => prev + nextWord);
     }, 75 * index);
   };
 
   const onSent = async () => {
+    setResultData("");
     setLoading(true);
     setShowResult(true);
-    setRecentPrompt(input);
-    setResultData("");
+    setRecentPrompt(input); // Save the current input as recent prompt
+
+    // Update previous prompts with the current input
+    setPreviousPrompts((prev) => [...prev, input]);
 
     try {
       const res = await fetch(API_URL, {
@@ -34,47 +37,52 @@ const ContextProvider = (props) => {
       });
 
       if (!res.ok) {
-        // Handle HTTP errors
         throw new Error("Failed to fetch from the backend");
       }
 
       const response = await res.json();
       let responseString = response["Answer: "];
+      // Process the response to format it properly
+      let newResponse = processResponse(responseString);
 
-      let responseArray = responseString.split("**");
-
-      let newResponse;
-
-      for (let i = 0; i < responseArray.length; i++) {
-        if (i === 0 || i % 2 !== 1) {
-          newResponse += responseArray[i];
-        } else {
-          newResponse += "<b>" + responseArray[i] + "</b>";
-        }
-      }
-      let newResponse2 = newResponse.split("*").join("</br>");
-
-      let newResponseArray = newResponse2.split(" ");
-
-      for (let i = 0; i < newResponseArray.length; i++) {
-        {
-          const nextWord = newResponseArray[i];
-          delayPara(i, nextWord + " ");
-        }
-      }
-
-      setPreviousPrompts((prev) => [...prev, recentPrompt]); // Keep track of prompts
+      // Display each word with a delay for typing effect
+      let newResponseArray = newResponse.split(" ");
+      newResponseArray.forEach((nextWord, i) => {
+        delayPara(i, nextWord + " ");
+      });
     } catch (error) {
       console.error(error);
-      setResultData("No response from backend");
+      setResultData(
+        "No response from backend | Error parsing response from backend"
+      );
     } finally {
       setLoading(false);
-      setInput("");
+      setInput(""); // Clear input after sending
     }
   };
 
+  const processResponse = (responseString) => {
+    let responseArray = responseString.split("**");
+    let newResponse = "";
+
+    responseArray.forEach((item, i) => {
+      if (i === 0 || i % 2 !== 1) {
+        newResponse += item;
+      } else {
+        newResponse += "<b>" + item + "</b>";
+      }
+    });
+
+    newResponse = newResponse
+      .split("*")
+      .join("</br>")
+      .split("#")
+      .join("</br></br>");
+    return newResponse;
+  };
+
   const contextValue = {
-    previousPrompt,
+    previousPrompts,
     setPreviousPrompts,
     onSent,
     setRecentPrompt,
